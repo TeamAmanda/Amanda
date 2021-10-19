@@ -20,7 +20,6 @@ Should any be missing kindly let us know at [Amanda](https://t.me/SLBotsOfficial
 ## Special Credits ❤
 
 <p align="leaft">
-  
 - [Inuka Asith](https://github.com/inukaasith)
 - [Prabasha](https://github.com/prabhasha-p/)
 - [ImJanindu](https://github.com/imjanindu) 
@@ -31,8 +30,8 @@ Should any be missing kindly let us know at [Amanda](https://t.me/SLBotsOfficial
 - [thehamkercat](https://github.com/thehamkercat/)
   
 </p>
+
 <p align="right">
-  
 - [TroJanzHEX](https://github.com/TroJanzHEX/)
 - [TeamDaisyX](https://github.com/teamdaisyx)
 - [Damantha Jasinghe](https://github.com/Damantha126)
