@@ -7,7 +7,7 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamAmanda/Amanda.git)
 
 
-## New version Avaiilable on Telegram as [Amanda](https://t.me/TheAmandabot)
+## New version Avaiilable on Telegram as [Discussion](https://t.me/TheAmandabot)
 ## Amanda is the latest
 
 All other credits mentioned on top of scripts
