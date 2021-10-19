@@ -3,16 +3,43 @@
   <img src="https://telegra.ph/file/8c1e8121a6591590f77df.jpg" width='600"'>
 </p>
 
+## Deploy
 
+### Easy Method
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamAmanda/Amanda.git)
 
+### Hard Way
+```sh
+# Install Git First (apt-instll git)
+$ git clone https://github.com/TeamAmanda/Amanda
+$ cd Amanda
+# Upgrade sources
+$ bash deploy.sh
+# Install All Requirements 
+$ pip3 install -r requirements.txt
+# Add Your Details to ./Amanda/config.py
+# Start Bot 
+$ python3 -m Amanda
+```
 
-## New version Avaiilable on Telegram as [Discussion](https://t.me/TheAmandabot)
+### Mandatory Vars
+```
+[+] Make Sure You Add All These Mandatory Vars. 
+    [-] APP_ID:   You can get this value from my.telegram.org
+    [-] APP_HASH :   You can get this value from my.telegram.org
+    [-] MONGO_URI : Your Mongo DB DataBase Url. 
+    [-] TOKEN: Get from botfarther
+    [-] DATABASE_URL: from elephantsql.com
+    [-] OWNER_ID: Your id
+[+] The Amanda won't run without setting the mandatory vars.
+```
+
+## New version Avaiilable on Telegram as [Amanda](https://t.me/TheAmandabot)
 ## Amanda is the latest
 
 All other credits mentioned on top of scripts
 
-Should any be missing kindly let us know at [Amanda](https://t.me/SLBotsOfficial) or simply submit a pull request on the readme.
+Should any be missing kindly let us know at [Developers](https://t.me/SLBotsOfficial) or simply submit a pull request on the readme.
 
 # Contributors
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=TeamAmanda/Amanda)
