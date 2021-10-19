@@ -1,6 +1,6 @@
 # Amanda Based on Python Telegram Bot ![GitHub repo size](https://img.shields.io/github/repo-size/TeamAmanda/Amanda?label=Repo%20Size)
 <p align="middle">
-  <img src="https://telegra.ph/file/04d73369440abc48ab3ce.png" width='600"'>
+  <img src="https://telegra.ph/file/8c1e8121a6591590f77df.jpg" width='600"'>
 </p>
 
 
