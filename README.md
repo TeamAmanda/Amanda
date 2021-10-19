@@ -19,7 +19,7 @@ Should any be missing kindly let us know at [Amanda](https://t.me/SLBotsOfficial
 
 ## Special Credits ❤
 
-<p align="left">
+<p align="leaft">
   
 - [Inuka Asith](https://github.com/inukaasith)
 - [Prabasha](https://github.com/prabhasha-p/)
