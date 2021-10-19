@@ -1,10 +1,10 @@
-# Amanda Based on Python Telegram Bot ![GitHub repo size](https://img.shields.io/github/repo-size/TR-TECH-GUIDE/Amanda?label=Repo%20Size)
+# Amanda Based on Python Telegram Bot ![GitHub repo size](https://img.shields.io/github/repo-size/TeamAmanda/Amanda?label=Repo%20Size)
 <p align="middle">
   <img src="https://telegra.ph/file/04d73369440abc48ab3ce.png" width='600"'>
 </p>
 
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TR-TECH-GUIDE/Amanda-v2.0.git)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamAmanda/Amanda.git)
 
 
 ## New version Avaiilable on Telegram as [Amanda](https://t.me/TheAmandabot)
@@ -20,6 +20,7 @@ Should any be missing kindly let us know at [Amanda](https://t.me/SLBotsOfficial
 ## Special Credits ❤
 
 <p align="left">
+  
 - [Inuka Asith](https://github.com/inukaasith)
 - [Prabasha](https://github.com/prabhasha-p/)
 - [ImJanindu](https://github.com/imjanindu) 
@@ -28,16 +29,19 @@ Should any be missing kindly let us know at [Amanda](https://t.me/SLBotsOfficial
 - [Mr-Dark-Prince](https://github.com/Mr-Dark-Prince/) 
 - [Anime Kaizoku](https://github.com/AnimeKaizoku)
 - [thehamkercat](https://github.com/thehamkercat/)
+  
 </p>
 <p align="right">
-  - [TroJanzHEX](https://github.com/TroJanzHEX/)
-  - [TeamDaisyX](https://github.com/teamdaisyx)
-  - [Damantha Jasinghe](https://github.com/Damantha126)
-  - [Sadew Jsk](https://Github.com/sadew451)
-  - [Fayas Noushad](https://github.com/FayasNoushad)
-  - [Nuhman Pk](https://github.com/bughunter0)
-  - [Abir Hasan](https://github.com/AbirHasan2005)
-  - [Shrimadhav](https://github.com/SpEcHiDe)
+  
+- [TroJanzHEX](https://github.com/TroJanzHEX/)
+- [TeamDaisyX](https://github.com/teamdaisyx)
+- [Damantha Jasinghe](https://github.com/Damantha126)
+- [Sadew Jsk](https://Github.com/sadew451)
+- [Fayas Noushad](https://github.com/FayasNoushad)
+- [Nuhman Pk](https://github.com/bughunter0)
+- [Abir Hasan](https://github.com/AbirHasan2005)
+- [Shrimadhav](https://github.com/SpEcHiDe)
+  
 </p>
 
 ## Devs
