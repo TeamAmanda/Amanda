@@ -13,8 +13,6 @@
 # Install Git First (apt-instll git)
 $ git clone https://github.com/TeamAmanda/Amanda
 $ cd Amanda
-# Upgrade sources
-$ bash deploy.sh
 # Install All Requirements 
 $ pip3 install -r requirements.txt
 # Add Your Details to ./Amanda/config.py
