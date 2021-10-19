@@ -5,10 +5,10 @@
 
 ## Deploy
 
-### Easy Method
+#### Easy Method
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamAmanda/Amanda.git)
 
-### Hard Way
+#### Hard Way
 ```sh
 # Install Git First (apt-instll git)
 $ git clone https://github.com/TeamAmanda/Amanda
@@ -22,7 +22,7 @@ $ pip3 install -r requirements.txt
 $ python3 -m Amanda
 ```
 
-### Mandatory Vars
+##### Mandatory Vars
 ```
 [+] Make Sure You Add All These Mandatory Vars. 
     [-] APP_ID:   You can get this value from my.telegram.org
