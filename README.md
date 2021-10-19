@@ -20,24 +20,24 @@ Should any be missing kindly let us know at [Amanda](https://t.me/SLBotsOfficial
 ## Special Credits ❤
 
 <p align="left">
-  - **[Inuka Asith](https://github.com/inukaasith)**
-  - **[Prabasha](https://github.com/prabhasha-p/)**
-  - **[ImJanindu](https://github.com/imjanindu)** 
-  - **[Devil](https://github.com/lucifeermorningstar)** 
-  - **[Miss-Valentina](https://github.com/Miss-Valentina)** 
-  - **[Mr-Dark-Prince](https://github.com/Mr-Dark-Prince/)** 
-  - **[Anime Kaizoku](https://github.com/AnimeKaizoku)**
-  - **[thehamkercat](https://github.com/thehamkercat/)**
+- [Inuka Asith](https://github.com/inukaasith)
+- [Prabasha](https://github.com/prabhasha-p/)
+- [ImJanindu](https://github.com/imjanindu) 
+- [Devil](https://github.com/lucifeermorningstar) 
+- [Miss-Valentina](https://github.com/Miss-Valentina)
+- [Mr-Dark-Prince](https://github.com/Mr-Dark-Prince/) 
+- [Anime Kaizoku](https://github.com/AnimeKaizoku)
+- [thehamkercat](https://github.com/thehamkercat/)
 </p>
 <p align="right">
-  - **[TroJanzHEX](https://github.com/TroJanzHEX/)**
-  - **[TeamDaisyX](https://github.com/teamdaisyx)**
-  - **[Damantha Jasinghe](https://github.com/Damantha126)**
-  - **[Sadew Jsk](https://Github.com/sadew451)**
-  - **[Fayas Noushad](https://github.com/FayasNoushad)**
-  - **[Nuhman Pk](https://github.com/bughunter0)**
-  - **[Abir Hasan](https://github.com/AbirHasan2005)**
-  - **[Shrimadhav](https://github.com/SpEcHiDe)**
+  - [TroJanzHEX](https://github.com/TroJanzHEX/)
+  - [TeamDaisyX](https://github.com/teamdaisyx)
+  - [Damantha Jasinghe](https://github.com/Damantha126)
+  - [Sadew Jsk](https://Github.com/sadew451)
+  - [Fayas Noushad](https://github.com/FayasNoushad)
+  - [Nuhman Pk](https://github.com/bughunter0)
+  - [Abir Hasan](https://github.com/AbirHasan2005)
+  - [Shrimadhav](https://github.com/SpEcHiDe)
 </p>
 
 ## Devs
