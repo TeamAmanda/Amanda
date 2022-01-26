@@ -156,7 +156,7 @@ async def progress_callback(current, total, reply):
             )
         else:
             download_speed = "0 B"
-        text = f"""Downloading...Wait...
+        text = f"""Downloading...
 <code>{return_progress_string(current, total)}</code>
 
 <b>Total Size:</b> {format_bytes(total)}

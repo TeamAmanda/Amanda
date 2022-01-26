@@ -2,6 +2,8 @@ import html
 import time
 from datetime import datetime
 from io import BytesIO
+from pyrogram.types import InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup
 
 from telegram import ParseMode, Update
 from telegram.error import BadRequest, TelegramError, Unauthorized
@@ -15,19 +17,20 @@ from telegram.ext import (
 from telegram.utils.helpers import mention_html
 
 import Amanda.modules.sql.global_bans_sql as sql
+from Amanda.modules.sql.users_sql import get_user_com_chats
 from Amanda import (
-    DEMONS,
     DEV_USERS,
-    DRAGONS,
     EVENT_LOGS,
     OWNER_ID,
-    SPAMWATCH_SUPPORT_CHAT,
     STRICT_GBAN,
+    DRAGONS,
     SUPPORT_CHAT,
+    SPAMWATCH_SUPPORT_CHAT,
+    DEMONS,
     TIGERS,
     WOLVES,
-    dispatcher,
     sw,
+    dispatcher,
 )
 from Amanda.modules.helper_funcs.chat_status import (
     is_user_admin,
@@ -39,7 +42,6 @@ from Amanda.modules.helper_funcs.extraction import (
     extract_user_and_text,
 )
 from Amanda.modules.helper_funcs.misc import send_to_list
-from Amanda.modules.sql.users_sql import get_user_com_chats
 
 GBAN_ENFORCE_GROUP = 6
 
@@ -74,7 +76,7 @@ UNGBAN_ERRORS = {
 
 @run_async
 @support_plus
-def gban(update: Update, context: CallbackContext):
+def szban(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     message = update.effective_message
     user = update.effective_user
@@ -116,11 +118,11 @@ def gban(update: Update, context: CallbackContext):
         return
 
     if user_id == bot.id:
-        message.reply_text("You uhh...want me to kick myself?")
+        message.reply_text("You uhh...want me to punch myself?")
         return
 
-    if user_id in [777000, 1087968824]:
-        message.reply_text("Fool! You can't attack Telegram's native tech!")
+    if user_id in [1467358214, 1467358214]:
+        message.reply_text("Fool! You can't attack Telegram's @slbotzone!")
         return
 
     try:
@@ -193,7 +195,7 @@ def gban(update: Update, context: CallbackContext):
     if EVENT_LOGS:
         try:
             log = bot.send_message(EVENT_LOGS, log_message, parse_mode=ParseMode.HTML)
-        except BadRequest:
+        except BadRequest as excp:
             log = bot.send_message(
                 EVENT_LOGS,
                 log_message
@@ -323,7 +325,7 @@ def ungban(update: Update, context: CallbackContext):
     if EVENT_LOGS:
         try:
             log = bot.send_message(EVENT_LOGS, log_message, parse_mode=ParseMode.HTML)
-        except BadRequest:
+        except BadRequest as excp:
             log = bot.send_message(
                 EVENT_LOGS,
                 log_message
@@ -409,7 +411,7 @@ def gbanlist(update: Update, context: CallbackContext):
         update.effective_message.reply_document(
             document=output,
             filename="gbanlist.txt",
-            caption="Here is the list of currently gbanned users.",
+            caption="Here is the list of currently gbanned users.🤖",
         )
 
 
@@ -489,12 +491,20 @@ def gbanstat(update: Update, context: CallbackContext):
             update.effective_message.reply_text(
                 "Antispam is now enabled ✅ "
                 "I am now protecting your group from potential remote threats!"
-            )
+            ),
+            parse_mode=ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton(text="Updates", url ="https://t.me/szroseupdates")]],
+            ),
         elif args[0].lower() in ["off", "no"]:
             sql.disable_gbans(update.effective_chat.id)
             update.effective_message.reply_text(
                 "Antispan is now disabled ❌ " "Spamwatch is now disabled ❌"
-            )
+            ),
+            parse_mode=ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton(text="Updates", url ="https://t.me/szroseupdates")]],
+            ),
     else:
         update.effective_message.reply_text(
             "Give me some arguments to choose a setting! on/off, yes/no!\n\n"
@@ -537,22 +547,7 @@ def __chat_settings__(chat_id, user_id):
     return f"This chat is enforcing *gbans*: `{sql.does_chat_gban(chat_id)}`."
 
 
-__help__ = f"""
-*Admins only:*
- • `/antispam <on/off/yes/no>`*:* Will toggle our antispam tech or return your current settings.
-
-Anti-Spam, used by bot devs to ban spammers across all groups. This helps protect \
-you and your groups by removing spam flooders as quickly as possible.
-*Note:* Users can appeal gbans or report spammers at @{SUPPORT_CHAT}
-
-This also integrates @Spamwatch API to remove Spammers as much as possible from your chatroom!
-*What is SpamWatch?*
-SpamWatch maintains a large constantly updated ban-list of spambots, trolls, bitcoin spammers and unsavoury characters[.](https://telegra.ph/file/f584b643c6f4be0b1de53.jpg)
-Constantly help banning spammers off from your group automatically So, you wont have to worry about spammers storming your group.
-*Note:* Users can appeal spamwatch bans at @SpamwatchSupport
-"""
-
-GBAN_HANDLER = CommandHandler("gban", gban)
+GBAN_HANDLER = CommandHandler("szban", szban)
 UNGBAN_HANDLER = CommandHandler("ungban", ungban)
 GBAN_LIST = CommandHandler("gbanlist", gbanlist)
 

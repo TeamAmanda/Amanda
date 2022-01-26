@@ -1,178 +1,116 @@
-import html
+import requests, functools
+from Amanda import pbot, BOT_ID
+from pyrogram import filters
+from Amanda.modules.sql.chatbot_sql import is_chatbot_indb, addchatbot, rmchatbot
+from googletrans import Translator
 
-# AI module using Intellivoid's Coffeehouse API by @TheRayaRobot
-from time import sleep, time
+tr = Translator()
 
-from coffeehouse.api import API
-from coffeehouse.exception import CoffeeHouseError as CFError
-from coffeehouse.lydia import LydiaAI
-from telegram import Update
-from telegram.error import BadRequest, RetryAfter, Unauthorized
-from telegram.ext import (
-    CallbackContext,
-    CommandHandler,
-    Filters,
-    MessageHandler,
-    run_async,
-)
-from telegram.utils.helpers import mention_html
-
-import Amanda.modules.sql.chatbot_sql as sql
-from Amanda import AI_API_KEY, SUPPORT_CHAT, dispatcher
-from Amanda.modules.helper_funcs.chat_status import user_admin
-from Amanda.modules.helper_funcs.filters import CustomFilters
-from Amanda.modules.log_channel import gloggable
-
-CoffeeHouseAPI = API(AI_API_KEY)
-api_client = LydiaAI(CoffeeHouseAPI)
-
-
-@run_async
-@user_admin
-@gloggable
-def add_chat(update: Update, context: CallbackContext):
-    global api_client
-    chat = update.effective_chat
-    msg = update.effective_message
-    user = update.effective_user
-    is_chat = sql.is_chat(chat.id)
-    if chat.type == "private":
-        msg.reply_text("You can't enable AI in PM.")
-        return
-
-    if not is_chat:
-        ses = api_client.create_session()
-        ses_id = str(ses.id)
-        expires = str(ses.expires)
-        sql.set_ses(chat.id, ses_id, expires)
-        msg.reply_text("AI successfully enabled for this chat!")
-        message = (
-            f"<b>{html.escape(chat.title)}:</b>\n"
-            f"#AI_ENABLED\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        )
-        return message
-    else:
-        msg.reply_text("AI is already enabled for this chat!")
-        return ""
-
-
-@run_async
-@user_admin
-@gloggable
-def remove_chat(update: Update, context: CallbackContext):
-    msg = update.effective_message
-    chat = update.effective_chat
-    user = update.effective_user
-    is_chat = sql.is_chat(chat.id)
-    if not is_chat:
-        msg.reply_text("AI isn't enabled here in the first place!")
-        return ""
-    else:
-        sql.rem_chat(chat.id)
-        msg.reply_text("AI disabled successfully!")
-        message = (
-            f"<b>{html.escape(chat.title)}:</b>\n"
-            f"#AI_DISABLED\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        )
-        return message
-
-
-def check_message(context: CallbackContext, message):
-    reply_msg = message.reply_to_message
-
-    if message.text.lower() == "liza":
-        return True
-    if reply_msg:
-        if reply_msg.from_user.id == context.bot.get_me().id:
-            return True
-    else:
-        return False
-
-
-@run_async
-def chatbot(update: Update, context: CallbackContext):
-    global api_client
-    msg = update.effective_message
-    chat_id = update.effective_chat.id
-    is_chat = sql.is_chat(chat_id)
-    bot = context.bot
-    if not is_chat:
-        return
-    if msg.text and not msg.document:
-        if not check_message(context, msg):
-            return
-        sesh, exp = sql.get_ses(chat_id)
-        query = msg.text
+def is_admin(func):
+    @functools.wraps(func)
+    async def oops(client,message):
+        is_admin = False
         try:
-            if int(exp) < time():
-                ses = api_client.create_session()
-                ses_id = str(ses.id)
-                expires = str(ses.expires)
-                sql.set_ses(chat_id, ses_id, expires)
-                sesh, exp = sql.get_ses(chat_id)
+            user = await message.chat.get_member(message.from_user.id)
+            admin_strings = ("creator", "administrator")
+            if user.status not in admin_strings:
+                is_admin = False
+            else:
+                is_admin = True
+
         except ValueError:
-            pass
-        try:
-            bot.send_chat_action(chat_id, action="typing")
-            rep = api_client.think_thought(sesh, query)
-            sleep(0.3)
-            msg.reply_text(rep, timeout=60)
-        except CFError:
-            pass
-            # bot.send_message(OWNER_ID,
-            #                 f"Chatbot error: {e} occurred in {chat_id}!")
+            is_admin = True
+        if is_admin:
+            await func(client,message)
+        else:
+            await message.reply("Only Admins can execute this command!")
+    return oops
+
+@pbot.on_message(filters.command("chatbot"))
+@is_admin
+async def chatbot_toggle(_, message):
+    if len(message.command) < 2:
+        return await message.reply_text("Use /chatbot with on or off")
+    status = message.text.split(None, 1)[1].strip()
+    status = status.lower()
+    chat_id = message.chat.id
+    if status == "on":
+        if (is_chatbot_indb(str(message.chat.id))):
+            return await message.reply("Already turned on")
+        else:
+         addchatbot(str(chat_id))
+         await message.reply_text("Chat bot enabled.")
+    elif status == "off":
+        if not (is_chatbot_indb(str(message.chat.id))):
+            return await message.reply("Already turned off")
+        else:
+         rmchatbot(str(chat_id))
+         await message.reply_text("Chat bot disabled.")
+    else:
+        await message.reply_text("Use /chatbot with on or off")
+
+@pbot.on_message(
+    filters.text 
+    & filters.reply 
+    & ~filters.private 
+    & ~filters.edited 
+    & ~filters.bot 
+    & ~filters.channel 
+    & ~filters.forwarded,
+    group=14)
+async def chatbot(_, message):
+    chat_id = message.chat.id
+    if not (is_chatbot_indb(str(message.chat.id))):
+        return
+    if not message.reply_to_message:
+        return
+    try:
+        senderr = message.reply_to_message.from_user.id
+    except:
+        return
+    if not(str(senderr) in BOT_ID):
+        return
+    if message.text[0] == "/":
+        return
+    await pbot.send_chat_action(message.chat.id, "typing")
+    lang = tr.translate(message.text).src
+    trtoen = (message.text if lang=="en" else tr.translate(message.text, dest="en").text).replace(" ", "%20")
+    text = trtoen.replace(" ", "%20") if len(message.text) < 2 else trtoen
+    affiliateplus = requests.get(f"https://api.affiliateplus.xyz/api/chatbot?message={text}&botname=sz%20rosebot&ownername=Supun%20Maduranga&user=1")
+    textmsg = (affiliateplus.json()["message"])
+    msg = tr.translate(textmsg, src='en', dest=lang)
+    await message.reply_text(msg.text)
+
+@pbot.on_message(
+    filters.regex("Rose|@TheAmandabot")
+    & ~filters.bot
+    & ~filters.via_bot
+    & ~filters.forwarded
+    & ~filters.reply
+    & ~filters.channel
+    & ~filters.edited)
+async def chatbotadv(_, message):
+    chat_id = message.chat.id
+    if not (is_chatbot_indb(str(message.chat.id))):
+        return
+    if message.text[0] == "/":
+        return
+    await pbot.send_chat_action(message.chat.id, "typing")
+    lang = tr.translate(message.text).src
+    trtoen = (message.text if lang=="en" else tr.translate(message.text, dest="en").text).replace(" ", "%20")
+    text = trtoen.replace(" ", "%20") if len(message.text) < 2 else trtoen
+    affiliateplus = requests.get(f"https://api.affiliateplus.xyz/api/chatbot?message={text}&botname=sz%20rosebot&ownername=Supun%20Maduranga&user=1")
+    textmsg = (affiliateplus.json()["message"])
+    msg = tr.translate(textmsg, src='en', dest=lang)
+    await message.reply_text(msg.text)    
 
 
-@run_async
-def list_chatbot_chats(update: Update, context: CallbackContext):
-    chats = sql.get_all_chats()
-    text = "<b>AI-Enabled Chats</b>\n"
-    for chat in chats:
-        try:
-            x = context.bot.get_chat(int(*chat))
-            name = x.title if x.title else x.first_name
-            text += f"• <code>{name}</code>\n"
-        except BadRequest:
-            sql.rem_chat(*chat)
-        except Unauthorized:
-            sql.rem_chat(*chat)
-        except RetryAfter as e:
-            sleep(e.retry_after)
-    update.effective_message.reply_text(text, parse_mode="HTML")
-
-
-__help__ = f"""
-*Commands:* 
-*Admins only:*
- ✪ `/addchat`*:* Enables Chatbot mode in the chat.
- ✪ `/rmchat`*:* Disables Chatbot mode in the chat.
-Reports bugs at @{SUPPORT_CHAT}
+__help__ = """
+Chatbot provide a more interactive group chat experience.
+*Admins only Commands*:
+❍ /chatbot `[on/off]` - To turn on and off chatbot
+Chat bot support many languages like English, Sinhala, Tamil etc. 
+Specially thanks to @boltbacker
 """
 
-ADD_CHAT_HANDLER = CommandHandler("addchat", add_chat)
-REMOVE_CHAT_HANDLER = CommandHandler("rmchat", remove_chat)
-CHATBOT_HANDLER = MessageHandler(
-    Filters.text
-    & (~Filters.regex(r"^#[^\s]+") & ~Filters.regex(r"^!") & ~Filters.regex(r"^\/")),
-    chatbot,
-)
-LIST_CB_CHATS_HANDLER = CommandHandler(
-    "listaichats", list_chatbot_chats, filters=CustomFilters.dev_filter
-)
-# Filters for ignoring #note messages, !commands and sed.
-
-dispatcher.add_handler(ADD_CHAT_HANDLER)
-dispatcher.add_handler(REMOVE_CHAT_HANDLER)
-dispatcher.add_handler(CHATBOT_HANDLER)
-dispatcher.add_handler(LIST_CB_CHATS_HANDLER)
-
-__mod_name__ = "Chatbot"
-__command_list__ = ["addchat", "rmchat", "listaichats"]
-__handlers__ = [
-    ADD_CHAT_HANDLER,
-    REMOVE_CHAT_HANDLER,
-    CHATBOT_HANDLER,
-    LIST_CB_CHATS_HANDLER,
-]
+__mod_name__ = "ChatBot"

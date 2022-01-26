@@ -7,6 +7,7 @@ from telegram.ext import CallbackContext, run_async
 from Amanda import SUPPORT_CHAT, WALL_API, dispatcher
 from Amanda.modules.disable import DisableAbleCommandHandler
 
+# Wallpapers module by @TheRealPhoenix using wall.alphacoders.com
 
 
 @run_async

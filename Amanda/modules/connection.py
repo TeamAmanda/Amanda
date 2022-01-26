@@ -224,14 +224,14 @@ def connect_chat(update, context):
                 chat_name = dispatcher.bot.getChat(chat.id).title
                 send_message(
                     update.effective_message,
-                    "Successfully connected to *{}*.".format(chat_name),
+                    "Successfully connected to *{}*.@TheAmandabot".format(chat_name),
                     parse_mode=ParseMode.MARKDOWN,
                 )
                 try:
                     sql.add_history_conn(user.id, str(chat.id), chat_name)
                     context.bot.send_message(
                         update.effective_message.from_user.id,
-                        "You are connected to *{}*. \nUse `/helpconnect` to check available commands.".format(
+                        "You are connected me to *{}*. \nUse `/helpconnect` to check available commands.".format(
                             chat_name
                         ),
                         parse_mode="markdown",
@@ -307,15 +307,15 @@ def connected(bot: Bot, update: Update, chat, user_id, need_admin=True):
 
 CONN_HELP = """
  Actions are available with connected groups:
- • View and edit Notes.
- • View and edit Filters.
- • Get invite link of chat.
- • Set and control AntiFlood settings.
- • Set and control Blacklist settings.
- • Set Locks and Unlocks in chat.
- • Enable and Disable commands in chat.
- • Export and Imports of chat backup.
- • More in future!"""
+ 🤖 View and edit Notes.
+ 🤖 View and edit Filters.
+ 🤖 Get invite link of chat.
+ 🤖 Set and control AntiFlood settings.
+ 🤖 Set and control Blacklist settings.
+ 🤖 Set Locks and Unlocks in chat.
+ 🤖 Enable and Disable commands in chat.
+ 🤖 Export and Imports of chat backup.
+ 🤖 More in future! /help """
 
 
 @run_async
@@ -387,19 +387,21 @@ def connect_button(update, context):
         connect_chat(update, context)
 
 
-__mod_name__ = "Connection"
+__mod_name__ = "ᴄᴏɴɴᴇᴄᴛ🎟️"
 
 __help__ = """
+@TheAmandabot
 Sometimes, you just want to add some notes and filters to a group chat, but you don't want everyone to see; This is where connections come in...
 This allows you to connect to a chat's database, and add things to it without the commands appearing in chat! For obvious reasons, you need to be an admin to add things; but any member in the group can view your data.
 
- ✪ /connect*:* Connects to chat (Can be done in a group by /connect or /connect <chat id> in PM)
- ✪ /connection*:* List connected chats
- ✪ /disconnect*:* Disconnect from a chat
- ✪ /helpconnect*:* List available commands that can be used remotely
+ ❍ /connect*:* Connects to chat (Can be done in a group by /connect or /connect <chat id> in PM)
+ ❍ /connection*:* List connected chats
+ ❍ /disconnect*:* Disconnect from a chat
+ ❍ /helpconnect*:* List available commands that can be used remotely
 
 *Admin only:*
- ✪ /allowconnect <yes/no>*:* allow a user to connect to a chat
+ ❍ /allowconnect <yes/no>*:* allow a user to connect to a chat
+
 """
 
 CONNECT_CHAT_HANDLER = CommandHandler("connect", connect_chat, pass_args=True)

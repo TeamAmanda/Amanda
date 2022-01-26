@@ -308,7 +308,7 @@ def info(update: Update, context: CallbackContext):
 
     if disaster_level_present:
 
-        text += ' [<a href="https://t.me/SuzuyaUpdates/55">?</a>]'.format(bot.username)
+        text += ' [<a href="https://t.me/SLBotsOfficial">?</a>]'.format(bot.username)
 
     try:
         user_member = chat.get_member(user.id)
@@ -420,14 +420,13 @@ def set_about_me(update: Update, context: CallbackContext):
 
 
 @run_async
-@sudo_plus
 def stats(update: Update, context: CallbackContext):
     process = subprocess.Popen(
         "neofetch --stdout", shell=True, text=True, stdout=subprocess.PIPE
     )
     output = process.communicate()[0]
     stats = (
-        "<b>Current stats:</b>\n"
+        "<b>stats of szrosebot📊:</b>\n"
         + "\n"
         + output
         + "\n".join([mod.__stats__() for mod in STATS])
@@ -524,30 +523,41 @@ def __user_info__(user_id):
     result = result.strip("\n")
     return result
 
-
 __help__ = """
+@TheAmandabot
 *ID:*
- • `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
- • `/gifid`*:* reply to a gif to me to tell you its file ID.
+ ❍ `/id`*:* get the current group id. If used by replying to a message, gets that user's id.
+ ❍ `/gifid`*:* reply to a gif to me to tell you its file ID.
 
 *Self addded information:* 
- • `/setme <text>`*:* will set your info
- • `/me`*:* will get your or another user's info.
+ ❍ `/setme <text>`*:* will set your info
+ ❍ `/me`*:* will get your or another user's info.
 Examples:
  `/setme I am a wolf.`
  `/me @username(defaults to yours if no user specified)`
 
 *Information others add on you:* 
- • `/bio`*:* will get your or another user's bio. This cannot be set by yourself.
-• `/setbio <text>`*:* while replying, will save another user's bio 
+ ❍ `/bio`*:* will get your or another user's bio. This cannot be set by yourself.
+ ❍ `/setbio <text>`*:* while replying, will save another user's bio 
 Examples:
  `/bio @username(defaults to yours if not specified).`
  `/setbio This user is a wolf` (reply to the user)
 
 *Overall Information about you:*
- • `/info`*:* get information about a user.
+ ❍ `/info`*:* get information about a user. 
  
-*©@SLBotsOfficial
+*What is that health thingy?*
+ That is a new weeb tech called "HP system", aka Health points system.
+ 
+ Penalties from available HP:
+ 25% if no username
+ 25% if no profile pic
+ 20% if no setme exists
+ 10% if no what others say exists
+ 7% if user is AFK
+ 5% if the user is AFK with reason
+ 
+
 """
 
 SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio)
@@ -570,7 +580,7 @@ dispatcher.add_handler(GET_BIO_HANDLER)
 dispatcher.add_handler(SET_ABOUT_HANDLER)
 dispatcher.add_handler(GET_ABOUT_HANDLER)
 
-__mod_name__ = "Info"
+__mod_name__ = "ɪɴꜰᴏℹ️"
 __command_list__ = ["setbio", "bio", "setme", "me", "info"]
 __handlers__ = [
     ID_HANDLER,

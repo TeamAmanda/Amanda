@@ -1,3 +1,5 @@
+# thonkify initially made by @devrism for discord. ported to telegram bot api (and) improved by @rupansh
+
 import base64
 from io import BytesIO
 

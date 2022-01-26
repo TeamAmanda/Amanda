@@ -28,7 +28,7 @@ async def download_coroutine(session, url, file_name, event, start, bot):
 **URL:** {}
 **File Name:** {}
 **File Size:** {}
-**© @SLBotsOfficial**""".format(
+**© @TheAmandabot**""".format(
                 url,
                 os.path.basename(file_name).replace("%20", " "),
                 humanbytes(total_length),
@@ -44,7 +44,7 @@ async def download_coroutine(session, url, file_name, event, start, bot):
                 downloaded += CHUNK_SIZE
                 now = time.time()
                 diff = now - start
-                if round(diff % 10.00) == 0:  # downloaded == total_length:
+                if round(diff % 10.00) == 0:
                     percentage = downloaded * 100 / total_length
                     speed = downloaded / diff
                     elapsed_time = round(diff) * 1000
@@ -83,10 +83,9 @@ ETA: {}""".format(
 
 
 __help__ = """
-* Url Upload *
-
-• /up : reply to a direct download link to upload it to telegram as files
+@TheAmandabot
+❍ `/up`*:* reply to a direct download link to upload it to telegram as files
  
-© @TharukRenuja 🇱🇰
 """
-__mod_name__ = "URL Upload"
+
+__mod_name__ = "ᴜʀʟ〽️"
