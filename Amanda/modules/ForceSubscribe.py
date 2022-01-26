@@ -14,6 +14,7 @@ from Amanda import DRAGONS as SUDO_USERS
 from Amanda import pbot
 from Amanda.modules.sql import forceSubscribe_sql as sql
 
+
 logging.basicConfig(level=logging.INFO)
 
 static_data_filter = filters.create(
@@ -35,8 +36,6 @@ def _onUnMuteRequest(client, cb):
                     client.get_chat_member(channel, user_id)
                     client.unban_chat_member(chat_id, user_id)
                     cb.message.delete()
-                    # if cb.message.reply_to_message.from_user.id == user_id:
-                    # cb.message.delete()
                 except UserNotParticipant:
                     client.answer_callback_query(
                         cb.id,
@@ -62,7 +61,7 @@ def _onUnMuteRequest(client, cb):
             else:
                 client.answer_callback_query(
                     cb.id,
-                    text="❗ Warning! Don't press the button when you cn talk.",
+                    text="❗ Warning! Don't press the button when you can talk 🤷‍♂️.",
                     show_alert=True,
                 )
 
@@ -84,7 +83,7 @@ def _check_member(client, message):
             except UserNotParticipant:
                 try:
                     sent_message = message.reply_text(
-                        "Welcome {} 🙏 \n **You havent joined our @{} Channel yet** 😭 \n \nPlease Join [Our Channel](https://t.me/{}) and hit the **UNMUTE ME** Button.".format(
+                        "Welcome {} 🙏 \n **You havent joined our @{} Channel yet** 😭 \n \nPlease Join [Our Channel](https://t.me/{}) and hit the **UNMUTE ME** Button. \n \n ".format(
                             message.from_user.mention, channel, channel
                         ),
                         disable_web_page_preview=True,
@@ -109,7 +108,7 @@ def _check_member(client, message):
                     )
                 except ChatAdminRequired:
                     sent_message.edit(
-                        "❗ **Amanda is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
+                        "❗ **RoseBot is not admin here..**\n__Give me ban permissions and retry.. \n#Ending FSub...__"
                     )
 
             except ChatAdminRequired:
@@ -117,8 +116,7 @@ def _check_member(client, message):
                     chat_id,
                     text=f"❗ **I not an admin of @{channel} channel.**\n__Give me admin of that channel and retry.\n#Ending FSub...__",
                 )
-
-
+    
 @pbot.on_message(filters.command(["forcesubscribe", "fsub"]) & ~filters.private)
 def config(client, message):
     user = client.get_chat_member(message.chat.id, message.from_user.id)
@@ -151,7 +149,7 @@ def config(client, message):
                     client.get_chat_member(input_str, "me")
                     sql.add_channel(chat_id, input_str)
                     message.reply_text(
-                        f"✅ **Force Subscribe is Enabled**\n__Force Subscribe is enabled, all the group members have to subscribe this [channel](https://t.me/{input_str}) in order to send messages in this group.__",
+                        f"✅ **Force Subscribe is Enabled in your chat**\n__Force Subscribe is enabled, all the group members have to subscribe this [channel](https://t.me/{input_str}) in order to send messages in this group.__",
                         disable_web_page_preview=True,
                     )
                 except UserNotParticipant:
@@ -166,7 +164,7 @@ def config(client, message):
         else:
             if sql.fs_settings(chat_id):
                 message.reply_text(
-                    f"✅ **Force Subscribe is enabled in this chat.**\n__For this [Channel](https://t.me/{sql.fs_settings(chat_id).channel})__",
+                    f"✅ **Force Subscribe is enabled in your chat.**\n__For this [Channel](https://t.me/{sql.fs_settings(chat_id).channel})__",
                     disable_web_page_preview=True,
                 )
             else:
@@ -176,25 +174,24 @@ def config(client, message):
             "❗ **Group Creator Required**\n__You have to be the group creator to do that.__"
         )
 
-
 __help__ = """
+@TheAmandabot
 *ForceSubscribe:*
-
-❂ Amanda can mute members who are not subscribed your channel until they subscribe
-❂ When enabled I will mute unsubscribed members and show them a unmute button. When they pressed the button I will unmute them
+❍ RoseBot can mute members who are not subscribed your channel until they subscribe.
+❍ When enabled I will mute unsubscribed members and show them a unmute button. When they pressed the button I will unmute them.
 
 *Setup*
+
 1) First of all add me in the group as admin with ban users permission and in the channel as admin.
 Note: Only creator of the group can setup me and i will not allow force subscribe again if not done so.
  
 *Commmands*
-❂ /ForceSubscribe - To get the current settings.
-❂ /ForceSubscribe no/off/disable - To turn of ForceSubscribe.
-❂ /ForceSubscribe {channel username} - To turn on and setup the channel.
-❂ /ForceSubscribe clear - To unmute all members who muted by me.
+❍ /ForceSubscribe - To get the current settings.
+❍ /ForceSubscribe no/off/disable - To turn of ForceSubscribe.
+❍ /ForceSubscribe {channel username} - To turn on and setup the channel.
+❍ /ForceSubscribe clear - To unmute all members who muted by me.
 
-Note: /FSub is an alias of /ForceSubscribe
+⚠️ Note:  /FSub is an alias of /ForceSubscribe
 
- 
 """
-__mod_name__ = "Force Subscribe"
+__mod_name__ = "ꜰ-ꜱᴜʙ🗻"

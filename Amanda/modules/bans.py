@@ -48,25 +48,25 @@ def ban(update: Update, context: CallbackContext) -> str:
     user_id, reason = extract_user_and_text(message, args)
 
     if not user_id:
-        message.reply_text("I doubt that's a user.")
+        message.reply_text("You don't seem to be referring to a user.")
         return log_message
 
     try:
         member = chat.get_member(user_id)
     except BadRequest as excp:
         if excp.message == "User not found":
-            message.reply_text("Can't seem to find this person.")
+            message.reply_text("Can't seem to find this user.")
             return log_message
         else:
             raise
 
     if user_id == bot.id:
-        message.reply_text("Oh yeah, ban myself, noob!")
+        message.reply_text("I'm not gonna BAN myself, are you crazy?")
         return log_message
 
     if is_user_ban_protected(chat, user_id, member) and user not in DEV_USERS:
         if user_id == OWNER_ID:
-            message.reply_text("Trying to put me against a God level disaster huh?")
+            message.reply_text("Are you mad supun is my owner I will fuck you 😈")
             return log_message
         elif user_id in DEV_USERS:
             message.reply_text("I can't act against our own.")
@@ -96,8 +96,8 @@ def ban(update: Update, context: CallbackContext) -> str:
     log = (
         f"<b>{html.escape(chat.title)}:</b>\n"
         f"#BANNED\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
+        f"<b>•Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
+        f"<b>•User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
     )
     if reason:
         log += "\n<b>Reason:</b> {}".format(reason)
@@ -106,11 +106,11 @@ def ban(update: Update, context: CallbackContext) -> str:
         chat.kick_member(user_id)
         # bot.send_sticker(chat.id, BAN_STICKER)  # banhammer marie sticker
         reply = (
-            f"<code>❕</code><b>Ban Event</b>\n"
-            f"<code> </code><b>•  User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
+            f"<code>❕</code><b>Ban Event</b> wow 🤣\n"
+            f"<code> </code><b> 😏User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))} By me @TheAmandabot"
         )
         if reason:
-            reply += f"\n<code> </code><b>•  Reason:</b> \n{html.escape(reason)}"
+            reply += f"\n<code> </code><b>😕 Reason:</b> \n{html.escape(reason)} @TheAmandabot"
         bot.sendMessage(chat.id, reply, parse_mode=ParseMode.HTML, quote=False)
         return log
 
@@ -172,8 +172,8 @@ def sban(update: Update, context: CallbackContext) -> str:
     log = (
         f"<b>{html.escape(chat.title)}:</b>\n"
         f"#SBANNED\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
+        f"<b>•Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
+        f"<b>•User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}"
     )
     if reason:
         log += "\n<b>Reason:</b> {}".format(reason)
@@ -253,9 +253,9 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
     log = (
         f"<b>{html.escape(chat.title)}:</b>\n"
         "#TEMP BANNED\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}\n"
-        f"<b>Time:</b> {time_val}"
+        f"<b>•Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
+        f"<b>•User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}\n"
+        f"<b>•Time:</b> {time_val}"
     )
     if reason:
         log += "\n<b>Reason:</b> {}".format(reason)
@@ -344,9 +344,9 @@ def stemp_ban(update: Update, context: CallbackContext) -> str:
     log = (
         f"<b>{html.escape(chat.title)}:</b>\n"
         "#STEMP BANNED\n"
-        f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        f"<b>User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}\n"
-        f"<b>Time:</b> {time_val}"
+        f"<b>•Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
+        f"<b>•User:</b> {mention_html(member.user.id, html.escape(member.user.first_name))}\n"
+        f"<b>•Time:</b> {time_val}"
     )
     if reason:
         log += "\n<b>Reason:</b> {}".format(reason)
@@ -594,20 +594,22 @@ def selfunban(context: CallbackContext, update: Update) -> str:
 
 
 __help__ = """
+@TheAmandabot
 *Kicks:*
- ✪ /kick <userhandle>*:* Kicks a user out of the group, (via handle, or reply)
- ✪ /skick <userhandle>*:* Silently kicks a user out of the group, (via handle, or reply)
- ✪ /kickme*:* Kicks the user who used the command.
+ ❍ /kick <userhandle>*:* Kicks a user out of the group, (via handle, or reply)
+ ❍ /skick <userhandle>*:* Silently kicks a user out of the group, (via handle, or reply)
+ ❍ /kickme*:* Kicks the user who used the command.
  
 *Bans:*
- ✪ /ban <userhandle>*:* Bans a user. (via handle, or reply)
- ✪ /sban <userhandle>*:* Silently bans a user without leaving any message. (via handle, or reply)
- ✪ /tban <userhandle> x(m/h/d)*:* Bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
- ✪ /stban <userhandle> x(m/h/d)*:* Silently bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
- ✪ /unban <userhandle>*:* Unbans a user. (via handle, or reply)
+ ❍ /ban <userhandle>*:* Bans a user. (via handle, or reply)
+ ❍ /sban <userhandle>*:* Silently bans a user without leaving any message. (via handle, or reply)
+ ❍ /tban <userhandle> x(m/h/d)*:* Bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
+ ❍ /stban <userhandle> x(m/h/d)*:* Silently bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
+ ❍ /unban <userhandle>*:* Unbans a user. (via handle, or reply)
 
 _NOTE:_
  If you set Log Channels, you will get logs of Silent kick and bans. Check *Logger* module to know more about Log Channel.
+ 
 """
 
 BAN_HANDLER = CommandHandler("ban", ban)
@@ -630,7 +632,7 @@ dispatcher.add_handler(ROAR_HANDLER)
 dispatcher.add_handler(KICKME_HANDLER)
 dispatcher.add_handler(SBAN_HANDLER)
 
-__mod_name__ = "Bans"
+__mod_name__ = "ʙᴀɴ🚫"
 __handlers__ = [
     BAN_HANDLER,
     TEMPBAN_HANDLER,

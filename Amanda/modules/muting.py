@@ -13,10 +13,7 @@ from Amanda.modules.helper_funcs.chat_status import (
     is_user_admin,
     user_admin,
 )
-from Amanda.modules.helper_funcs.extraction import (
-    extract_user,
-    extract_user_and_text,
-)
+from Amanda.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from Amanda.modules.helper_funcs.string_handling import extract_time
 from Amanda.modules.log_channel import loggable
 
@@ -370,15 +367,18 @@ def stemp_mute(update: Update, context: CallbackContext) -> str:
 
 
 __help__ = """
+@TheAmandabot
 *Admins only:*
- ✪ /mute <userhandle>*:* silences a user. Can also be used as a reply, muting the replied to user.
- ✪ /smute <userhandle>*:* silences a user without notifying. Can also be used as a reply, muting the replied to user.
- ✪ /tmute <userhandle> x(m/h/d)*:* mutes a user for x time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
- ✪ /stmute <userhandle> x(m/h/d)*:* mutes a user for x time without notifying. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
- ✪ /unmute <userhandle>*:* unmutes a user. Can also be used as a reply, muting the replied to user.
+ ❍ /mute <userhandle>*:* silences a user. Can also be used as a reply, muting the replied to user.
+ ❍ /smute <userhandle>*:* silences a user without notifying. Can also be used as a reply, muting the replied to user.
+ ❍ /tmute <userhandle> x(m/h/d)*:* mutes a user for x time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
+ ❍ /stmute <userhandle> x(m/h/d)*:* mutes a user for x time without notifying. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
+ ❍ /unmute <userhandle>*:* unmutes a user. Can also be used as a reply, muting the replied to user.
  
  _NOTE:_
  If you set Log Channels, you will get logs of Silent mutes. Check *Logger* module to know more about Log Channel.
+ 
+
 """
 
 MUTE_HANDLER = CommandHandler("mute", mute)
@@ -393,7 +393,7 @@ dispatcher.add_handler(UNMUTE_HANDLER)
 dispatcher.add_handler(TEMPMUTE_HANDLER)
 dispatcher.add_handler(STEMPMUTE_HANDLER)
 
-__mod_name__ = "Muting"
+__mod_name__ = "ᴍᴜᴛɪɴɢ🔕"
 __handlers__ = [
     MUTE_HANDLER,
     SMUTE_HANDLER,

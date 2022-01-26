@@ -6,10 +6,7 @@ from telegram.error import BadRequest
 from telegram.ext import CallbackContext, Filters, MessageHandler, run_async
 
 from Amanda import dispatcher
-from Amanda.modules.disable import (
-    DisableAbleCommandHandler,
-    DisableAbleMessageHandler,
-)
+from Amanda.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
 from Amanda.modules.sql import afk_sql as sql
 from Amanda.modules.users import get_user_id
 
@@ -150,9 +147,12 @@ def check_afk(update, context, user_id, fst_name, userc_id):
 
 
 __help__ = """
- • `/afk <reason>`*:* mark yourself as AFK(away from keyboard).
- • `brb <reason>`*:* same as the afk command - but not a command.
-When marked as AFK, any mentions will be replied to with a message to say you're not available!
+@TheAmandabot
+ ❍ /afk <reason> *:* mark yourself as AFK(away from keyboard).
+ ❍ /brb <reason> *:* same as the afk command - but not a command.
+ 
+ When marked as AFK, any mentions will be replied to with a message to say you're not available!
+ 
 """
 
 AFK_HANDLER = DisableAbleCommandHandler("afk", afk)
@@ -167,7 +167,7 @@ dispatcher.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)
 dispatcher.add_handler(NO_AFK_HANDLER, AFK_GROUP)
 dispatcher.add_handler(AFK_REPLY_HANDLER, AFK_REPLY_GROUP)
 
-__mod_name__ = "AFK"
+__mod_name__ = "ᴀꜰᴋ🥡"
 __command_list__ = ["afk"]
 __handlers__ = [
     (AFK_HANDLER, AFK_GROUP),

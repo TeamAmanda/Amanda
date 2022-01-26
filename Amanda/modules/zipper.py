@@ -43,7 +43,7 @@ async def _(event):
     if event.is_group:
         if not (await is_register_admin(event.input_chat, event.message.sender_id)):
             await event.reply(
-                "Hi.. You are not admin.. You can't use this command.. But you can use in my pm"
+                "Hai.. You are not admin.. You can't use this command.. But you can use in my pm"
             )
             return
 
@@ -210,8 +210,10 @@ def get_lst_of_files(input_directory, output_lst):
 
 
 __help__ = """
- ✪ /zip: reply to a telegram file to compress it in .zip format
- ✪ /unzip: reply to a telegram file to decompress it from the .zip format
+ @TheAmandabot
+❍ /zip: reply to a telegram file to compress it in .zip format
+❍ /unzip: reply to a telegram file to decompress it from the .zip format
+ 
 """
 
-__mod_name__ = "Zipper"
+__mod_name__ = "ᴢɪᴘᴘᴇʀ🗂️"

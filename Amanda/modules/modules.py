@@ -29,7 +29,7 @@ def load(update: Update, context: CallbackContext):
     )
 
     try:
-        imported_module = importlib.import_module("DaisyX.modules." + text)
+        imported_module = importlib.import_module("Amanda.modules." + text)
     except:
         load_messasge.edit_text("Does that module even exist?")
         return
@@ -99,7 +99,7 @@ def unload(update: Update, context: CallbackContext):
     )
 
     try:
-        imported_module = importlib.import_module("DaisyX.modules." + text)
+        imported_module = importlib.import_module("Amanda.modules." + text)
     except:
         unload_messasge.edit_text("Does that module even exist?")
         return
@@ -169,7 +169,7 @@ def listmodules(update: Update, context: CallbackContext):
     for helpable_module in HELPABLE:
         helpable_module_info = IMPORTED[helpable_module]
         file_info = IMPORTED[helpable_module_info.__mod_name__.lower()]
-        file_name = file_info.__name__.rsplit("DaisyX.modules.", 1)[1]
+        file_name = file_info.__name__.rsplit("Amanda.modules.", 1)[1]
         mod_name = file_info.__mod_name__
         module_list.append(f"- <code>{mod_name} ({file_name})</code>\n")
     module_list = "Following modules are loaded : \n\n" + "".join(module_list)

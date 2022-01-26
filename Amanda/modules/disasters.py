@@ -8,15 +8,11 @@ from telegram.ext import CallbackContext, CommandHandler, run_async
 from telegram.utils.helpers import mention_html
 
 from Amanda import DEMONS, DEV_USERS, DRAGONS, OWNER_ID, TIGERS, WOLVES, dispatcher
-from Amanda.modules.helper_funcs.chat_status import (
-    dev_plus,
-    sudo_plus,
-    whitelist_plus,
-)
+from Amanda.modules.helper_funcs.chat_status import dev_plus, sudo_plus, whitelist_plus
 from Amanda.modules.helper_funcs.extraction import extract_user
 from Amanda.modules.log_channel import gloggable
 
-ELEVATED_USERS_FILE = os.path.join(os.getcwd(), "DaisyX/elevated_users.json")
+ELEVATED_USERS_FILE = os.path.join(os.getcwd(), "Amanda/elevated_users.json")
 
 
 def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
@@ -576,7 +572,7 @@ def whitelistlist(update: Update, context: CallbackContext):
 @run_async
 @whitelist_plus
 def tigerlist(update: Update, context: CallbackContext):
-    reply = "<b>Known Tiger Disasters 🐯:</b>\n"
+    reply = "<b>Helpers list 🐯:</b>\n"
     bot = context.bot
     for each_user in TIGERS:
         user_id = int(each_user)
@@ -592,7 +588,7 @@ def tigerlist(update: Update, context: CallbackContext):
 @whitelist_plus
 def supportlist(update: Update, context: CallbackContext):
     bot = context.bot
-    reply = "<b>Known Demon Disasters 👹:</b>\n"
+    reply = "<b>All supporter 👹:</b>\n"
     for each_user in DEMONS:
         user_id = int(each_user)
         try:
@@ -608,7 +604,7 @@ def supportlist(update: Update, context: CallbackContext):
 def sudolist(update: Update, context: CallbackContext):
     bot = context.bot
     true_sudo = list(set(DRAGONS) - set(DEV_USERS))
-    reply = "<b>Known Dragon Disasters 🐉:</b>\n"
+    reply = "<b>TheAmandabot sudolist 🐉:</b>\n"
     for each_user in true_sudo:
         user_id = int(each_user)
         try:
@@ -624,7 +620,7 @@ def sudolist(update: Update, context: CallbackContext):
 def devlist(update: Update, context: CallbackContext):
     bot = context.bot
     true_dev = list(set(DEV_USERS) - {OWNER_ID})
-    reply = "<b>Anteiku Union Members ⚡️:</b>\n"
+    reply = "<b>TheAmandabot Developers ⚡️:</b>\n"
     for each_user in true_dev:
         user_id = int(each_user)
         try:

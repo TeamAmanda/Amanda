@@ -5,7 +5,6 @@ from Amanda.modules.disable import DisableAbleCommandHandler
 from Amanda.modules.helper_funcs.alternate import send_message
 from Amanda.modules.helper_funcs.chat_status import user_admin
 
-
 @run_async
 @user_admin
 def send(update, context):

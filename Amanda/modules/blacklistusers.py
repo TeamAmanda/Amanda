@@ -1,4 +1,4 @@
-# Module to blacklist users and prevent them from using commands by @TheRayaRobot
+# Module to blacklist users and prevent them from using commands by @TheRealPhoenix
 import html
 
 from telegram import ParseMode, Update
@@ -9,10 +9,7 @@ from telegram.utils.helpers import mention_html
 import Amanda.modules.sql.blacklistusers_sql as sql
 from Amanda import DEMONS, DEV_USERS, DRAGONS, OWNER_ID, TIGERS, WOLVES, dispatcher
 from Amanda.modules.helper_funcs.chat_status import dev_plus
-from Amanda.modules.helper_funcs.extraction import (
-    extract_user,
-    extract_user_and_text,
-)
+from Amanda.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from Amanda.modules.log_channel import gloggable
 
 BLACKLISTWHITELIST = [OWNER_ID] + DEV_USERS + DRAGONS + WOLVES + DEMONS

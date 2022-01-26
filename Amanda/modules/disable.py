@@ -162,7 +162,7 @@ if is_module_loaded(FILENAME):
         args = context.args
         chat = update.effective_chat
         if len(args) >= 1:
-            disable_module = "DaisyX.modules." + args[0].rsplit(".", 1)[0]
+            disable_module = "Amanda.modules." + args[0].rsplit(".", 1)[0]
 
             try:
                 module = importlib.import_module(disable_module)
@@ -237,7 +237,7 @@ if is_module_loaded(FILENAME):
         chat = update.effective_chat
 
         if len(args) >= 1:
-            enable_module = "DaisyX.modules." + args[0].rsplit(".", 1)[0]
+            enable_module = "Amanda.modules." + args[0].rsplit(".", 1)[0]
 
             try:
                 module = importlib.import_module(enable_module)
@@ -340,17 +340,19 @@ if is_module_loaded(FILENAME):
     dispatcher.add_handler(TOGGLE_HANDLER)
 
     __help__ = """
-    ✪ /cmds*:* check the current status of disabled commands
+  
+    ❍ /cmds*:* check the current status of disabled commands
 
     *Admins only:*
-    ✪ /enable <cmd name>*:* enable that command
-    ✪ /disable <cmd name>*:* disable that command
-    ✪ /enablemodule <module name>*:* enable all commands in that module
-    ✪ /disablemodule <module name>*:* disable all commands in that module
-    ✪ /listcmds*:* list all possible toggleable commands
+    ❍ /enable <cmd name>*:* enable that command
+    ❍ /disable <cmd name>*:* disable that command
+    ❍ /enablemodule <module name>*:* enable all commands in that module
+    ❍ /disablemodule <module name>*:* disable all commands in that module
+    ❍ /listcmds*:* list all possible toggleable commands
+    
     """
 
-    __mod_name__ = "Disabling"
+    __mod_name__ = "ᴅɪꜱᴀʙʟᴇ🥏"
 
 else:
     DisableAbleCommandHandler = CommandHandler

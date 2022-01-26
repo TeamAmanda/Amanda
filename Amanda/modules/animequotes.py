@@ -1,4 +1,4 @@
-# Made By @TharukRenuja On Telegram & Github Id TR-TECH-GUIDE
+# Made By @Madepranav On Telegram & Github Id Superboyfan
 import random
 
 from telegram import Update

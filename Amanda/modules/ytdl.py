@@ -17,9 +17,9 @@ from youtube_dl.utils import (
 from Amanda.events import register as saitama
 
 
-@saitama(pattern="^/yt(audio|video) (.*)")
+@saitama(pattern="^/yts(udio|ideo) (.*)")
 async def download_video(v_url):
-    """For .ytdl command, download media from YouTube and many other sites."""
+    """ For .ytdl command, download media from YouTube and many other sites. """
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
     lmao = await v_url.reply("`Preparing to download...`")
@@ -63,7 +63,7 @@ async def download_video(v_url):
         song = False
         video = True
     try:
-        await lmao.edit("`Fetching data, please wait..`")
+        await lmao.edit("Fetching data, please wait..")
         with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url)
     except DownloadError as DE:
