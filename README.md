@@ -19,17 +19,31 @@
     
     
 ## Special Credits 🥰    
-- [hirunaofficial](https://github.com/hirunaofficial)
-- [Damantha126](https://github.com/Damantha126)
-- [Sadew451](https://github.com/Sadew451) 
-- [Uvindu-bro](https://github.com/UvinduBro) 
-- [daisyx-old](https://github.com/TeamDaisyX/Daisy-OLD)
-- [innexia](https://github.com/DarkCybers/innexia/tree/Sammy/innexiaBot)
-- [Daisyx](https://github.com/TeamDaisyX/DaisyX)
-- [Group Menter](https://github.com/TeamGroupMenter/GroupMenter)
-- [boltbackerbot](https://t.me/boltbacker)
-- [Single Developers </>](https://t.me/SingleDevelopers)
-- [SZ Rose Bot](https://t.me/szteambots)
+- **[TR-TECH-GUIDE](https://github.com/TR-TECH-GUIDE) - Owner | Dev**
+- **[Tharuk Renuja](https://github.com/TharukRenuja) - Dev**
+- **[hirunaofficial](https://github.com/hirunaofficial)**
+- **[Damantha126](https://github.com/Damantha126)**
+- **[Sadew451](https://github.com/Sadew451)**
+- **[Uvindu-bro](https://github.com/UvinduBro)**
+- **[innexia](https://github.com/DarkCybers/innexia/tree/Sammy/innexiaBot)**
+- **[Group Menter](https://github.com/TeamGroupMenter/GroupMenter)**
+- **[boltbackerbot](https://t.me/boltbacker)**
+- **[Single Developers](https://t.me/SingleDevelopers)**
+- **[𝙨𝙯 𝙩𝙚𝙖𝙢 𝙗𝙤𝙩𝙨](https://t.me/szteambots)**
+- **[Inuka Asith](https://github.com/inukaasith)**
+- **[Prabasha](https://github.com/prabhasha-p/)**
+- **[ImJanindu](https://github.com/imjanindu)** 
+- **[Devil](https://github.com/lucifeermorningstar)** 
+- **[Miss-Valentina](https://github.com/Miss-Valentina)** 
+- **[Mr-Dark-Prince](https://github.com/Mr-Dark-Prince/)** 
+- **[Anime Kaizoku](https://github.com/AnimeKaizoku)**
+- **[thehamkercat](https://github.com/thehamkercat/)**
+- **[TroJanzHEX](https://github.com/TroJanzHEX/)**
+- **[TeamDaisyX](https://github.com/teamdaisyx)**
+- **[Fayas Noushad](https://github.com/FayasNoushad)**
+- **[Nuhman Pk](https://github.com/bughunter0)**
+- **[Abir Hasan](https://github.com/AbirHasan2005)**
+- **[Shrimadhav](https://github.com/SpEcHiDe)**
 
 ## 👨‍💻 Self-hosting (For Devs)
 ```
@@ -51,7 +65,7 @@ $ python3 -m Amanda
  
 ### 💡 Warning: Use your bot for your personal use only   
 
- [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamAmanda/Amanda) 
+ [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamAmanda/Amanda/tree/v3) 
 
 ## Enjoy Your own Bot!
 
@@ -59,6 +73,6 @@ $ python3 -m Amanda
 ![👨‍👦‍👦Support](https://img.shields.io/badge/dynamic/json?color=blue&label=support%20@trtechguide&query=members&url=https%3A%2F%2Fonline-users-api.up.railway.app%2Fcheck%3Fchat%3Dslbotzone&logo=telegram) 
 
 ## Contact me if you want to create your own bot from the updated repository but it is always done for a fee💰.
-## ⚙️ Bot hoster [Beast Huntered [🇱🇰🇸 🇱 🇧 🇴 🇹 🇸 ™]](https://t.me/SLBotsOfficial)
+## ⚙️ Bot hoster [Beast Huntered [🇰🇸 🇱 🇧 🇴 🇹 🇸 ™]](https://t.me/SLBotsOfficial)
  
     
