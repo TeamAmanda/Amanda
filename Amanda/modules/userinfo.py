@@ -26,7 +26,7 @@ from Amanda import (
     sw,
 )
 from Amanda import telethn as SaitamaTelethonClient
-from Amanda import STATS, TOKEN, USER_INFO
+from Amanda.__main__ import STATS, TOKEN, USER_INFO
 from Amanda.modules.disable import DisableAbleCommandHandler
 from Amanda.modules.helper_funcs.chat_status import sudo_plus
 from Amanda.modules.helper_funcs.extraction import extract_user
