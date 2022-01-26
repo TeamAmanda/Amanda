@@ -1,15 +1,13 @@
 {
-      "name": "Amanda",
-      "description": "An Anime themed Telegram group management bot.",
-      "logo": "https://telegra.ph/file/04d73369440abc48ab3ce.png",
+      "name": "Amanda ✨",
+      "description": "A powerful group management bot which can help you to manage your groups effectively as possible. Support @SLBotsOfficial",
+	  "logo": "https://telegra.ph/file/f80844f7f1e6bfaf5ebd6.jpg",
       "keywords": [
-         "telegram",
-         "anime",
-         "group",
-         "manager",
-         "Amanda"
+         "Telegram",
+         "Groupmanager",
+         "TheAmandabot"
       ],   
-   "repository": "https://github.com/TR-TECH-GUIDE/Amanda",
+   "repository": "https://github.com/TeamAmanda/Amanda",
    "addons": [
       {
          "options": {
@@ -17,7 +15,7 @@
          },
          "plan": "heroku-postgresql"
       }
-   ],
+   ],	
    "buildpacks": [
     {
       "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
@@ -25,7 +23,7 @@
     {
       "url": "heroku/python"
     }     
-  ],      
+  ],       
    "env": {
       "TOKEN": {
          "description": "Your bot token. Get one from @BotFather duh",
@@ -36,6 +34,21 @@
          "description": "Get API_ID from my.telegram.org, used for telethon based modules.",
          "required": true,
          "value": ""
+      },      
+      "BOT_ID": {
+         "description": "BOT_ID",
+         "required": true,
+         "value": ""
+      },      
+      "HEROKU_API_KEY": {
+         "description": "HEROKU_API_KEY",
+         "required": true,
+         "value": ""
+      },      
+      "HEROKU_APP_NAME": {
+         "description": "HEROKU_APP_NAME",
+         "required": true,
+         "value": ""
       },
       "API_HASH": {
          "description": "Get API_HASH from my.telegram.org, used for telethon based modules.",
@@ -43,9 +56,24 @@
          "value": ""
       },    
       "SQLALCHEMY_DATABASE_URI": {
-         "description": "Your postgres sql db, empty this field if you dont have one.",
+         "description": "Your postgres sql db, get it form https://www.elephantsql.com/",
          "required": false,
-         "value": "sqldbtype://username:pw@hostname:port/db_name"
+         "value": "Fill this"
+       },
+    "REM_BG_API_KEY": {
+      "description": "remove.bg api (no need)",
+      "value": "",
+      "required": false
+       },
+    "MONGO_DB_URI": {
+      "description": "Required for database connections",
+      "value": "",
+      "required": true
+       },
+    "VIRUS_API_KEY": {
+      "description": "Get one from https://cloudmersive.com/virus-api ",
+      "value": "",
+      "required": false
       },      
       "OWNER_ID": {
          "description": "Your user ID as an integer.",
@@ -54,12 +82,12 @@
       },
       "OWNER_USERNAME": {
          "description": "Your username without the @",
-         "value": "TharukRenuja"
+         "value": "ImTharuk"
       },
       "SUPPORT_CHAT": {
-         "description": "Your Telegram support group chat username where your users will go and bother you with shit But be like: MyGroupChatUsernameBlah. If this ever points to saitama support than consider you made an enemy.",
+         "description": "Your Telegram support group chat username where your users will go and bother you with shit But be like: SL Tech Zone. If this ever points to SL Tech Zone support than consider you made an enemy.",
          "required": true,
-         "value": "SLBotsOfficial"
+         "value": "trtechguide"
       },
       "EVENT_LOGS": {
          "description": "Event logs channel to note down important bot level events, recommend to make this public. ex: '-123456'",
@@ -82,11 +110,11 @@
          "value": "-xyz"
       },
       "DEV_USERS": {
-         "description": "ID of users who are Devs of your bot (can use /py etc.). If you are a noob and would come and brother SLBotsOfficial then keep the current ID's here at they are and add yours.",
+         "description": "ID of users who are Devs of your bot (can use /py etc.). If you are a noob and would come and bother Saitama support then keep the current ID's here at they are and add yours.",
          "required": false,
-         "value": "1202064253 996634013"
+         "value": "1202064253"
       },
-      "sw_api": {
+      "SPAMWATCH_API": {
          "description": "Spamwatch API Token, Get one from @SpamWatchBot.",
          "required": false,
          "value": ""
@@ -98,22 +126,22 @@
       "DRAGONS": {
          "description": "A space separated list of user IDs who you want to assign as sudo users.",
          "required": false,
-         "value": "1202064253 996634013"
+         "value": "1202064253"
       },
       "DEMONS": {
          "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
          "required": false,
-         "value": "1202064253 996634013"
+         "value": "1202064253"
       },
       "TIGERS": {
          "description": "A space separated list of user IDs who you wanna assign as tiger users.",
          "required": false,
-         "value": "1202064253 996634013"
+         "value": "1202064253"
       },
       "WOLVES": {
          "description": "A space separated list of user IDs who you want to assign as whitelisted - can't be banned with your bot.",
          "required": false,
-         "value": "1202064253 996634013"
+         "value": "1202064253"
       },
       "ENV": {
          "description": "Setting this to ANYTHING will enable environment variables. Leave it as it is",
@@ -130,9 +158,9 @@
          "value": ""
       },
       "URL": {
-         "description": "The Heroku App URL",
+         "description": "The Heroku App URL :-  https://<appname>.herokuapp.com/",
          "required": false,
-         "value": "https://<appname>.herokuapp.com/"
+         "value": ""
       },
       "No_LOAD": {
          "description": "Dont load these modules cause they shit, space separation",
@@ -151,7 +179,7 @@
       "DONATION_LINK": {
          "description": "Optional: link where you would like to receive donations. If you are a noob, better leave it linking to paul",
          "required": false,
-         "value": "https://trtechguide.wordpress.com"
+         "value": "https://www.paypal.me/username"
       },
       "DEL_CMDS": {
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
@@ -172,14 +200,5 @@
          "required": false,
          "value": ""
       }
-   },
-   "keywords": [
-      "telegram",
-      "anime",
-      "group",
-      "manager",
-      "daisy"
-   ],
-   "name": "Amanda",
-   "repository": "https://github.com/TR-TECH-GUIDE/Amanda"
+   }
 }

@@ -2,13 +2,13 @@ import logging
 import os
 import sys
 import time
-
 import spamwatch
 import telegram.ext as tg
 from pyrogram import Client, errors
 from telethon import TelegramClient
 
 StartTime = time.time()
+CMD_HELP = {}
 
 # enable logging
 logging.basicConfig(
@@ -32,36 +32,39 @@ if ENV:
     TOKEN = os.environ.get("TOKEN", None)
 
     try:
-        OWNER_ID = int(os.environ.get("OWNER_ID", None))
+        OWNER_ID = int(os.environ.get("OWNER_ID", "1202064253"))
     except ValueError:
         raise Exception("Your OWNER_ID env variable is not a valid integer.")
 
-    JOIN_LOGGER = os.environ.get("JOIN_LOGGER", None)
-    OWNER_USERNAME = os.environ.get("OWNER_USERNAME", None)
+    JOIN_LOGGER = os.environ.get("JOIN_LOGGER", "-1001333667683")
+    OWNER_USERNAME = os.environ.get("OWNER_USERNAME", "ImTharuk")
 
     try:
-        DRAGONS = set(int(x) for x in os.environ.get("DRAGONS", "").split())
-        DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "").split())
+        DRAGONS = set(int(x) for x in os.environ.get("DRAGONS", "1202064253").split())
+        DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "1202064253").split())
     except ValueError:
         raise Exception("Your sudo or dev users list does not contain valid integers.")
 
     try:
-        DEMONS = set(int(x) for x in os.environ.get("DEMONS", "").split())
+        DEMONS = set(int(x) for x in os.environ.get("DEMONS", "1202064253").split())
     except ValueError:
         raise Exception("Your support users list does not contain valid integers.")
 
     try:
-        WOLVES = set(int(x) for x in os.environ.get("WOLVES", "").split())
+        WOLVES = set(int(x) for x in os.environ.get("WOLVES", "1202064253").split())
     except ValueError:
         raise Exception("Your whitelisted users list does not contain valid integers.")
 
     try:
-        TIGERS = set(int(x) for x in os.environ.get("TIGERS", "").split())
+        TIGERS = set(int(x) for x in os.environ.get("TIGERS", "1202064253").split())
     except ValueError:
         raise Exception("Your tiger users list does not contain valid integers.")
 
+    HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", "none")   
+    HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", "none")  
+   
     INFOPIC = bool(os.environ.get("INFOPIC", False))
-    EVENT_LOGS = os.environ.get("EVENT_LOGS", None)
+    EVENT_LOGS = os.environ.get("EVENT_LOGS", "-1001598073501")
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     URL = os.environ.get("URL", "")  # Does not contain token
     PORT = int(os.environ.get("PORT", 5000))
@@ -69,7 +72,7 @@ if ENV:
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
     DB_URI = os.environ.get("DATABASE_URL")
-    DONATION_LINK = os.environ.get("DONATION_LINK")
+    DONATION_LINK = os.environ.get("DONATION_LINK", "https://t.me/TharukRenuja")
     LOAD = os.environ.get("LOAD", "").split()
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
@@ -85,12 +88,20 @@ if ENV:
     YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
-    REPOSITORY = os.environ.get("REPOSITORY", "")
+    VIRUS_API_KEY = os.environ.get("VIRUS_API_KEY", None)
+    MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
+    REPOSITORY = os.environ.get("REPOSITORY", "github.com/TeamAmanda/Amanda")
     REDIS_URL = os.environ.get("REDIS_URL")
     IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./")
-
+    REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
+    log = os.environ.get("log", "-1001598073501")
+    OPENWEATHERMAP_ID = os.environ.get("OPENWEATHERMAP_ID", None)
+    BOT_ID = os.environ.get("BOT_ID", None)  
+    SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", "@SpamWatchSupport")
+    bot_start_time = time.time()
+    
     try:
         WHITELIST_CHATS = set(
             int(x) for x in os.environ.get("WHITELIST_CHATS", "").split()
@@ -146,6 +157,7 @@ else:
     API_HASH = Config.API_HASH
 
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
+    MONGO_DB_URI = Config.MONGO_DB_URI
     DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
     NO_LOAD = Config.NO_LOAD
