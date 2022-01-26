@@ -73,6 +73,6 @@ $ python3 -m Amanda
 ![👨‍👦‍👦Support](https://img.shields.io/badge/dynamic/json?color=blue&label=support%20@trtechguide&query=members&url=https%3A%2F%2Fonline-users-api.up.railway.app%2Fcheck%3Fchat%3Dslbotzone&logo=telegram) 
 
 ## Contact me if you want to create your own bot from the updated repository but it is always done for a fee💰.
-## ⚙️ Bot hoster [Beast Huntered [🇰🇸 🇱 🇧 🇴 🇹 🇸 ™]](https://t.me/SLBotsOfficial)
+## ⚙️ Bot hoster [Beast Huntered [🇸 🇱 🇧 🇴 🇹 🇸 ™]](https://t.me/SLBotsOfficial)
  
     
