@@ -65,7 +65,7 @@ $ python3 -m Amanda
  
 ### 💡 Warning: Use your bot for your personal use only   
 
- [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/TeamAmanda/Amanda/tree/v3) 
+ [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=github.com/TeamAmanda/Amanda/tree/v3.git) 
 
 ## Enjoy Your own Bot!
 
