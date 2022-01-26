@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageOps
 from Amanda.config import get_str_key
 
 RemoveBG_API = get_str_key("REM_BG_API_KEY", required=False)
-
+#Fixed
 
 async def rotate_90(client, message):
     try:
