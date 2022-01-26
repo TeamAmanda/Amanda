@@ -103,7 +103,7 @@ def import_data(update, context):
             )
 
             LOGGER.exception(
-                "Import for the chat %s with the name %s failed.",
+                "Imprt for the chat %s with the name %s failed.",
                 str(chat.id),
                 str(chat.title),
             )
@@ -372,16 +372,17 @@ def get_chat(chat_id, chat_data):
         return {"status": False, "value": False}
 
 
-__mod_name__ = "Backups"
+__mod_name__ = "ʙᴀᴄᴋᴜᴘ📩"
 
 __help__ = """
+@TheAmandabot
 *Only for group owner:*
 
- ✪ `/import`: Reply to the backup file for the butler / emilia group to import as much as possible, making transfers very easy! \
+ ❍ `/import`: Reply to the backup file for the butler / emilia group to import as much as possible, making transfers very easy! \
  Note that files / photos cannot be imported due to telegram restrictions.
 
- ✪ `/export`: Export group data, which will be exported are: rules, notes (documents, images, music, video, audio, voice, text, text buttons) \
-
+ ❍ `/export`: Export group data, which will be exported are: rules, notes (documents, images, music, video, audio, voice, text, text buttons) \
+ 
 """
 
 IMPORT_HANDLER = CommandHandler("import", import_data)

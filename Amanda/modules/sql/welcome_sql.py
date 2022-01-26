@@ -7,8 +7,8 @@ from sqlalchemy import BigInteger, Boolean, Column, Integer, String, UnicodeText
 from Amanda.modules.helper_funcs.msg_types import Types
 from Amanda.modules.sql import BASE, SESSION
 
-DEFAULT_WELCOME = "Hey {first}, how are you?"
-DEFAULT_GOODBYE = "Nice knowing ya!"
+DEFAULT_WELCOME = "Welcome {first}, how are you?"
+DEFAULT_GOODBYE = "Nice knowing you!"
 
 DEFAULT_WELCOME_MESSAGES = [
     "{first} is here!",  # Discord welcome messages copied
@@ -214,7 +214,6 @@ DEFAULT_GOODBYE_MESSAGES = [
     "Go outside",
     "Always your head in the clouds",
 ]
-# Line 111 to 152 are references from https://bindingofisaac.fandom.com/wiki/Fortune_Telling_Machine
 
 
 class Welcome(BASE):

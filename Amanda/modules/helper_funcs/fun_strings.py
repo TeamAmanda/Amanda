@@ -1,3 +1,4 @@
+# taken from @zoldycktmbot
 TRUTH = (
     "Do you pick your nose?",
     "Do you sing in the shower? ",
@@ -104,7 +105,7 @@ DARE = (
 )
 
 
-
+# Taken from Openuserbot.
 GDNIGHT = [
     "`Good night keep your dreams alive`",
     "`Night, night, to a dear friend! May you sleep well!`",
@@ -143,7 +144,7 @@ GDNIGHT = [
     "`Every day, you encourage me to do new things, friend! May tonight’s rest bring a new day that overflows with courage and exciting events!`",
 ]
 
-
+# Taken from Openuserbot.
 GDMORNING = [
     "`Life is full of uncertainties. But there will always be a sunrise after every sunset. Good morning!`",
     "`It doesn’t matter how bad was your yesterday. Today, you are going to make it a good one. Wishing you a good morning!`",
@@ -182,7 +183,7 @@ GDMORNING = [
     "`It is easy to imagine the world coming to an end. But it is difficult to imagine spending a day without my friends. Good morning.`",
 ]
 
-
+# Abuse strings credits @NotAMemeBot
 ABUSE_STRINGS = (
     "Owww ... Such a stupid idiot.",
     "Don't drink and type.",
@@ -301,7 +302,7 @@ RUN_STRINGS = (
 )
 
 
-
+# pat - by @saitamarobot
 PAT_TEMPLATES = (
     "Pattt Se Headshot!",
     "{user1} pats {user2} on the head.",
@@ -368,7 +369,7 @@ PAT_STICKERS = (
 )
 
 
-
+# SLAP_TEMPLATES From @Amanda
 SLAP_TEMPLATES = (
     "{user2} was shot by {user1}.",
     "{user2} walked into a cactus while trying to escape {user1}.",
@@ -543,7 +544,7 @@ PUNCH = (
 
 HUG = ("hugs", "hugged", "kissed", "pinches")
 
-
+# Table strings credits: @Amanda
 
 TABLE = (
     "(╯°□°）╯彡 ┻━┻",
@@ -595,7 +596,7 @@ GIFS = [
 DECIDE = ("Yes.", "NoU.", "Maybe.", "No.")
 
 
-
+# AFK strings credits: PaperPlaneExtended!
 AFKRPL = (
     "<b>{}</b> is busy right now. Please talk in a bag and when they come back you can just give him the bag!",
     "<b>{}</b> is away right now. If you need anything, leave a message after the beep:\n<code>beeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeep</code>!",
