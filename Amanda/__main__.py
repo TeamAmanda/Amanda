@@ -93,7 +93,6 @@ DONATE_STRING = """
 """
 STICKERS = "CAACAgUAAxkBAAEDoyhh2Snil7EaaIzwbf2vyxqI3upzawACUwMAAnjfyFcfSbrOsC1IsyME"
 STICKER = "CAACAgUAAxkBAAEDoyhh2Snil7EaaIzwbf2vyxqI3upzawACUwMAAnjfyFcfSbrOsC1IsyME"   
-Amanda_IMG = "https://telegra.ph/file/f80844f7f1e6bfaf5ebd6.jpg"
 
 BUTTONS = (
     [
@@ -237,12 +236,11 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            update.effective_message.reply_photo(
-                Amanda_IMG,
-                caption=PM_START_TEXT,
+            update.effective_message.reply_text(
+                PM_START_TEXT,
                 reply_markup=InlineKeyboardMarkup(BUTTONS),
                 parse_mode=ParseMode.MARKDOWN,
-                disable_web_page_preview=True,
+               disable_web_page_preview=True,
             )
     else:
         update.effective_message.reply_text(
