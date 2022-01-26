@@ -61,7 +61,7 @@ $ python3 -m Amanda
  # Contributors
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=TeamAmanda/Amanda)   
  
- ## Deplaoy Guide
+ ## Deploy Guide
  
 ### 💡 Warning: Use your bot for your personal use only   
 
