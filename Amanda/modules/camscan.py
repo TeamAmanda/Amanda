@@ -74,6 +74,8 @@ file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
+__mod_name__ = "CamScan📸"
+
 __help__ = """
  - /camscanner: Reply to a image to scan and improve it's clarity.
 
