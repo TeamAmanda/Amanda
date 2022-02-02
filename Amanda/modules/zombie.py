@@ -6,6 +6,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChannelParticipantsAdmins, ChatBannedRights
 
 from Amanda import DEMONS, DEV_USERS, DRAGONS, OWNER_ID, telethn
+from Amanda import dispatcher
 
 # =================== CONSTANT ===================
 
@@ -109,3 +110,10 @@ async def zombies(event):
         \n`{del_a}` Zombie Admin Accounts Are Not Removed!"
 
     await cleaning_zombies.edit(del_status)
+
+ZOMBIE_HANDLER = DisableAbleCommandHandler("zombies", zombie)
+
+dispatcher.add_handler(ZOMBIE_HANDLER)
+
+__command_list__ = ["zombies"]
+__handlers__ = [ZOMBIE_HANDLER]    
