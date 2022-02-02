@@ -6,6 +6,7 @@ from telethon.tl import functions
 from pymongo import MongoClient
 import os
 import subprocess
+from Amanda import dispatcher
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
