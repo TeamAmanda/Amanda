@@ -90,6 +90,7 @@ if ENV:
     IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./")
+    MONGO_DB_URI = os.environ.get("MONGO_DB_URI")
 
     try:
         WHITELIST_CHATS = set(
@@ -146,6 +147,7 @@ else:
     API_HASH = Config.API_HASH
 
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
+    MONGO_DB_URI = Config.MONGO_DB_URI
     DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
     NO_LOAD = Config.NO_LOAD
