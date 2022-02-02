@@ -10,6 +10,7 @@ import requests
 from telethon import types
 from telethon.tl import functions
 from Amanda.events import register
+from Amanda import dispatcher
 
 langi = "en"
 
@@ -144,9 +145,9 @@ __help__ = """
  - /imdb - Get full info about a movie with imdb.com
 """
 
-CMD_HELP.update({
-    file_helpo: [
-        file_helpo,
-        __help__
-    ]
-})
+IMDB_HANDLER = DisableAbleCommandHandler("imdb", imdb)
+
+dispatcher.add_handler(IMDB_HANDLER)
+
+__command_list__ = ["imdb"]
+__handlers__ = [IMDB_HANDLER]
