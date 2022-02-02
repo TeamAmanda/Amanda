@@ -1,5 +1,6 @@
 import pymongo
 from pymongo import MongoClient
+from Amanda import MONGO_DB_URI
 
 dbclient = pymongo.MongoClient("MONGO_DB_URI")
 database = dbclient["Amanda"]
