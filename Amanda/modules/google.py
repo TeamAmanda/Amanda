@@ -1,4 +1,4 @@
-from Amanda import CMD_HELP
+from Amanda import dispatcher
 from bs4 import BeautifulSoup
 import urllib
 from Amanda import tbot
@@ -258,58 +258,6 @@ async def scam(results, lim):
 
     return imglinks
 
-
-@register(pattern="^/app (.*)")
-async def apk(e):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if e.is_group:
-        if await is_register_admin(e.input_chat, e.message.sender_id):
-            pass
-        elif e.chat_id == iid and e.sender_id == userss:
-            pass
-        else:
-            return
-    try:
-        app_name = e.pattern_match.group(1)
-        remove_space = app_name.split(" ")
-        final_name = "+".join(remove_space)
-        page = requests.get("https://play.google.com/store/search?q=" +
-                            final_name + "&c=apps")
-        lnk = str(page.status_code)
-        soup = bs4.BeautifulSoup(page.content, "lxml", from_encoding="utf-8")
-        results = soup.findAll("div", "ZmHEEd")
-        app_name = (results[0].findNext("div", "Vpfmgd").findNext(
-            "div", "WsMG1c nnK0zc").text)
-        app_dev = results[0].findNext("div",
-                                      "Vpfmgd").findNext("div", "KoLSrc").text
-        app_dev_link = ("https://play.google.com" + results[0].findNext(
-            "div", "Vpfmgd").findNext("a", "mnKHRc")["href"])
-        app_rating = (results[0].findNext("div", "Vpfmgd").findNext(
-            "div", "pf5lIe").find("div")["aria-label"])
-        app_link = ("https://play.google.com" + results[0].findNext(
-            "div", "Vpfmgd").findNext("div", "vU6FJ p63iDd").a["href"])
-        app_icon = (results[0].findNext("div", "Vpfmgd").findNext(
-            "div", "uzcko").img["data-src"])
-        app_details = "<a href='" + app_icon + "'>📲&#8203;</a>"
-        app_details += " <b>" + app_name + "</b>"
-        app_details += ("\n\n<code>Developer :</code> <a href='" +
-                        app_dev_link + "'>" + app_dev + "</a>")
-        app_details += "\n<code>Rating :</code> " + app_rating.replace(
-            "Rated ", "⭐ ").replace(" out of ", "/").replace(
-                " stars", "", 1).replace(" stars", "⭐ ").replace("five", "5")
-        app_details += ("\n<code>Features :</code> <a href='" + app_link +
-                        "'>View in Play Store</a>")
-        app_details += "\n\n===> @TheAmandabot <==="
-        await e.reply(app_details, link_preview=True, parse_mode="HTML")
-    except IndexError:
-        await e.reply(
-            "No result found in search. Please enter **Valid app name**")
-    except Exception as err:
-        await e.reply("Exception Occured:- " + str(err))
-
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
@@ -317,13 +265,21 @@ file_helpo = file_help.replace("_", " ")
 __help__ = """
  - /google <text>: Perform a google search
  - /img <text>: Search Google for images and returns them\nFor greater no. of results specify lim, For eg: `/img hello lim=10`
- - /app <appname>: Searches for an app in Play Store and returns its details.
  - /reverse: Does a reverse image search of the media which it was replied to.
 """
 
-CMD_HELP.update({
-    file_helpo: [
-        file_helpo,
-        __help__
-    ]
-})
+GOOGLE_HANDLER = DisableAbleCommandHandler("google", google)
+GIMG_HANDLER = DisableAbleCommandHandler("img", gimg)
+REVERSE_HANDLER = DisableAbleCommandHandler("reverse", reverse)
+
+dispatcher.add_handler(REVERSE_HANDLER)
+dispatcher.add_handler(GIMG_HANDLER)
+dispatcher.add_handler(GOOGLE_HANDLER)
+
+__command_list__ = ["google"]
+__command_list__ = ["img"]
+__command_list__ = ["reverse"]
+
+__handlers__ = [REVERSE_HANDLER]
+__handlers__ = [GIMG_HANDLER]
+__handlers__ = [GOOGLE_HANDLER]
