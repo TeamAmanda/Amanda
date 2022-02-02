@@ -1,5 +1,5 @@
 from Amanda import telethn
-from Amanda import CMD_HELP, MONGO_DB_URI
+from Amanda import MONGO_DB_URI
 from Amanda.events import register
 from telethon import *
 from telethon.tl import functions
