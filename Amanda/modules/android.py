@@ -406,7 +406,7 @@ Get the latest Magsik releases or TWRP for your device!
 × /los `<codename>`: Gets Latest lineage os build.
 """
 
-__mod_name__ = "Android"
+__mod_name__ = "Android📱"
 
 MAGISK_HANDLER = DisableAbleCommandHandler("magisk", magisk, run_async=True)
 TWRP_HANDLER = DisableAbleCommandHandler("twrp", twrp, pass_args=True, run_async=True)
