@@ -135,7 +135,7 @@ use `/tr <lang code>` for some other language!
 × /tts: To some message to convert it into audio format! 
 """
 
-__mod_name__ = "Translate"
+__mod_name__ = "Translate📑"
 
 dispatcher.add_handler(
     DisableAbleCommandHandler(["tr", "tl"], translate, pass_args=True, run_async=True)
