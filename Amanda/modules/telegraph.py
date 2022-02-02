@@ -4,7 +4,7 @@ from pyrogram import filters
 from telegraph import upload_file
 
 from Amanda import pbot as app
-
+from Amanda import dispatcher
 
 @app.on_message(filters.command("telegraph"))
 async def telegraph(client, message):
@@ -45,3 +45,10 @@ async def telegraph(client, message):
         )
     finally:
         os.remove(download_location)
+
+TELEGRAPH_HANDLER = DisableAbleCommandHandler("telegraph", tgh)
+
+dispatcher.add_handler(TELEGRAPH_HANDLER)
+
+__command_list__ = ["telegraph"]
+__handlers__ = [TELEGRAPH_HANDLER]        
