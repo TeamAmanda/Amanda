@@ -2,11 +2,12 @@ from datetime import datetime
 import os
 import requests
 from Amanda.events import register
-from Amanda import telethn, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from Amanda import telethn, TEMP_DOWNLOAD_DIRECTORY
 from telethon.tl import functions
 from telethon.tl import types
 from pymongo import MongoClient
 from Amanda import MONGO_DB_URI
+from Amanda import dispatcher
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
@@ -141,9 +142,14 @@ __help__ = """
  - /getpaste <key>: Get the content of a paste or shortened url from del.dog
 """
 
-CMD_HELP.update({
-    file_helpo: [
-        file_helpo,
-        __help__
-    ]
-})
+PASTE_HANDLER = DisableAbleCommandHandler("paste", paste)
+GETPASTE_HANDLER = DisableAbleCommandHandler("getpaste", getpaste)
+
+dispatcher.add_handler(GETPASTE_HANDLER)
+dispatcher.add_handler(PASTE_HANDLER)
+
+__command_list__ = ["paste"]
+__command_list__ = ["getpaste"]
+
+__handlers__ = [PASTE_HANDLER]
+__handlers__ = [GETPASTE_HANDLER]
