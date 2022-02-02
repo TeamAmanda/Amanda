@@ -1,13 +1,24 @@
+from datetime import datetime
+from Amanda import dispatcher
+from telethon.tl.types import DocumentAttributeVideo
+from hachoir.parser import createParser
+from hachoir.metadata import extractMetadata
+from Amanda import telethn
 import os
 import time
 import zipfile
-
 from telethon import types
 from telethon.tl import functions
-
 from Amanda import TEMP_DOWNLOAD_DIRECTORY
-from Amanda import telethn as client
 from Amanda.events import register
+
+from pymongo import MongoClient
+from Amanda import MONGO_DB_URI
+
+client = MongoClient()
+client = MongoClient(MONGO_DB_URI)
+db = client["Amanda"]
+approved_users = db.approve
 
 
 async def is_register_admin(chat, user):
@@ -15,15 +26,15 @@ async def is_register_admin(chat, user):
 
         return isinstance(
             (
-                await client(functions.channels.GetParticipantRequest(chat, user))
+                await tbot(functions.channels.GetParticipantRequest(chat, user))
             ).participant,
             (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
         )
     if isinstance(chat, types.InputPeerChat):
 
-        ui = await client.get_peer_id(user)
+        ui = await tbot.get_peer_id(user)
         ps = (
-            await client(functions.messages.GetFullChatRequest(chat.chat_id))
+            await tbot(functions.messages.GetFullChatRequest(chat.chat_id))
         ).full_chat.participants.participants
         return isinstance(
             next((p for p in ps if p.user_id == ui), None),
@@ -36,34 +47,39 @@ async def is_register_admin(chat, user):
 async def _(event):
     if event.fwd_from:
         return
+    approved_userss = approved_users.find({})
+    for ch in approved_userss:
+        iid = ch["id"]
+        userss = ch["user"]
+    if event.is_group:
+        if (await is_register_admin(event.input_chat, event.message.sender_id)):
+            pass
+        elif event.chat_id == iid and event.sender_id == userss:
+            pass
+        else:
+            return
 
     if not event.is_reply:
         await event.reply("Reply to a file to compress it.")
         return
-    if event.is_group:
-        if not (await is_register_admin(event.input_chat, event.message.sender_id)):
-            await event.reply(
-                "Hai.. You are not admin.. You can't use this command.. But you can use in my pm"
-            )
-            return
 
-    mone = await event.reply("`⏳️ Please wait...`")
+    mone = await event.reply("Processing ...")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
         try:
-            time.time()
-            downloaded_file_name = await event.client.download_media(
+            c_time = time.time()
+            downloaded_file_name = await tbot.download_media(
                 reply_message, TEMP_DOWNLOAD_DIRECTORY
             )
             directory_name = downloaded_file_name
-        except Exception as e:  # pylint:disable=C0103,W0703
+        except Exception as e:
             await mone.reply(str(e))
     zipfile.ZipFile(directory_name + ".zip", "w", zipfile.ZIP_DEFLATED).write(
         directory_name
     )
-    await event.client.send_file(
+    await tbot.send_file(
         event.chat_id,
         directory_name + ".zip",
         force_document=True,
@@ -73,18 +89,11 @@ async def _(event):
 
 
 def zipdir(path, ziph):
-    # ziph is zipfile handle
     for root, dirs, files in os.walk(path):
         for file in files:
             ziph.write(os.path.join(root, file))
             os.remove(os.path.join(root, file))
 
-
-from datetime import datetime
-
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
-from telethon.tl.types import DocumentAttributeVideo
 
 extracted = TEMP_DOWNLOAD_DIRECTORY + "extracted/"
 thumb_image_path = TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
@@ -92,41 +101,21 @@ if not os.path.isdir(extracted):
     os.makedirs(extracted)
 
 
-async def is_register_admin(chat, user):
-    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
-
-        return isinstance(
-            (
-                await client(functions.channels.GetParticipantRequest(chat, user))
-            ).participant,
-            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
-        )
-    if isinstance(chat, types.InputPeerChat):
-
-        ui = await client.get_peer_id(user)
-        ps = (
-            await client(functions.messages.GetFullChatRequest(chat.chat_id))
-        ).full_chat.participants.participants
-        return isinstance(
-            next((p for p in ps if p.user_id == ui), None),
-            (types.ChatParticipantAdmin, types.ChatParticipantCreator),
-        )
-    return None
-
-
 @register(pattern="^/unzip")
 async def _(event):
     if event.fwd_from:
         return
 
-    if not event.is_reply:
-        await event.reply("Reply to a zip file.")
-        return
+    approved_userss = approved_users.find({})
+    for ch in approved_userss:
+        iid = ch["id"]
+        userss = ch["user"]
     if event.is_group:
-        if not (await is_register_admin(event.input_chat, event.message.sender_id)):
-            await event.reply(
-                " Hai.. You are not admin.. You can't use this command.. But you can use in my pm🙈"
-            )
+        if await is_register_admin(event.input_chat, event.message.sender_id):
+            pass
+        elif event.chat_id == iid and event.sender_id == userss:
+            pass
+        else:
             return
 
     mone = await event.reply("Processing ...")
@@ -136,15 +125,15 @@ async def _(event):
         start = datetime.now()
         reply_message = await event.get_reply_message()
         try:
-            time.time()
-            downloaded_file_name = await client.download_media(
+            c_time = time.time()
+            downloaded_file_name = await tbot.download_media(
                 reply_message, TEMP_DOWNLOAD_DIRECTORY
             )
         except Exception as e:
             await mone.reply(str(e))
         else:
             end = datetime.now()
-            (end - start).seconds
+            ms = (end - start).seconds
 
         with zipfile.ZipFile(downloaded_file_name, "r") as zip_ref:
             zip_ref.extractall(extracted)
@@ -164,7 +153,8 @@ async def _(event):
                     if metadata.has("duration"):
                         duration = metadata.get("duration").seconds
                     if os.path.exists(thumb_image_path):
-                        metadata = extractMetadata(createParser(thumb_image_path))
+                        metadata = extractMetadata(
+                            createParser(thumb_image_path))
                         if metadata.has("width"):
                             width = metadata.get("width")
                         if metadata.has("height"):
@@ -179,17 +169,17 @@ async def _(event):
                         )
                     ]
                 try:
-                    await client.send_file(
+                    await tbot.send_file(
                         event.chat_id,
                         single_file,
                         force_document=force_document,
                         supports_streaming=supports_streaming,
                         allow_cache=False,
                         reply_to=event.message.id,
-                        attributes=document_attributes,
+                        attributes=document_attributes
                     )
                 except Exception as e:
-                    await client.send_message(
+                    await tbot.send_message(
                         event.chat_id,
                         "{} caused `{}`".format(caption_rts, str(e)),
                         reply_to=event.message.id,
@@ -207,6 +197,9 @@ def get_lst_of_files(input_directory, output_lst):
             return get_lst_of_files(current_file_name, output_lst)
         output_lst.append(current_file_name)
     return output_lst
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
 
 
 __help__ = """
