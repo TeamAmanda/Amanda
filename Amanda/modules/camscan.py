@@ -84,12 +84,11 @@ __help__ = """
 
 **PRO TIP**
 You can simply draw a border(a black square) around the portion you want to scan for better efficiency and edge detection
-If you are still messed up send `/helpcamscanner` in pm for the tutorial !
 """
 
-CMD_HELP.update({
-    file_helpo: [
-        file_helpo,
-        __help__
-    ]
-})
+CAMSCAN_HANDLER = DisableAbleCommandHandler("camscanner", camscan)
+
+dispatcher.add_handler(CAMSCAN_HANDLER)
+
+__command_list__ = ["camscanner"]
+__handlers__ = [CAMSCAN_HANDLER]
