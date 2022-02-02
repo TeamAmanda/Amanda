@@ -1,4 +1,3 @@
-from Amanda import CMD_HELP
 import os
 from Amanda import tbot
 from Amanda import MONGO_DB_URI
