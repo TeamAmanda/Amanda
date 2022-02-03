@@ -1,8 +1,6 @@
 from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, Sequence, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy import event
 
 from Amanda import DB_URI
 
