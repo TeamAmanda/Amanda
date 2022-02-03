@@ -1,6 +1,6 @@
 import logging
 import time
-from Amanda import OWNER_ID
+from Amanda import OWNER_ID, dispatcher
 from Amanda import pbot
 from userbase import present_in_userbase, add_to_userbase, get_users
 
@@ -33,3 +33,7 @@ Total users: {str(len(user_ids))}
 Deleted accounts: {str(deleted)} """
        await message.reply(text=text)
        await message.delete()
+
+BROADCAST_HANDLER = CommandHandler("broadcast", broadcast)
+
+dispatcher.add_handler(BROADCAST_HANDLER)       
